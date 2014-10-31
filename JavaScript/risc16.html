@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	<title>RiSC-16</title> 
+	
+	<link rel="stylesheet" type="text/css" href="css/layout.css" /> 
+	<link rel="stylesheet" type="text/css" href="css/tabs.css" /> 
+	<link rel="stylesheet" type="text/css" href="css/editor.css" /> 
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.color.js"></script>
+	<script type="text/javascript" src="js/codemirror/js/codemirror.js"></script>
+	
+	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript" src="js/risc16emulator.js"></script>
+	<script type="text/javascript" src="js/risc16translator.js"></script>
+	<script type="text/javascript" src="js/risc16editor.js"></script>
+</head> 
+ 
+<body> 
+ 
+	<div id="header">
+		<h1>RiSC-16</h1>
+	</div> 
+ 
+	<div id="container"> 
+ 
+		<div id="center" class="column">
+			<ul class="tabs">
+				<li><a href="#asm">Asamblers</a></li>
+				<li><a href="#machinecode">Mašīnkods</a></li>
+			</ul>
+			
+			<div class="tab-container">
+				<div id="toolbar">
+					<img src="images/debug.png" id="debug" alt="Atkļūdot" title="Atkļūdot - iekurbulēt procesoru, lai varētu redzēt, kā tas izpilda katru komandu" />
+					<img src="images/run.png" id="run" alt="Palaist" title="Palaist - iekurbulēt procesoru un ļaut tam izpildīt visas komandas, neieturot pauzi" />
+					<img src="images/step.png" id="step" alt="Nākamā instrukcija" title="Nākamais solis - pateikt procesoram, lai izpilda nākamo instrukciju" />
+					<img src="images/suspend.png" id="suspend" alt="Apturēt" title="Apturēt - pateikt procesoram, lai tas beidz izpildīt komandas" />
+					<img src="images/reset.png" id="reset" alt="Atjaunot" title="Atjaunot - pateikt procesoram, lai nākamreiz komandas sāk pildīt no sākuma" />
+				</div>
+				
+				<div id="asm" class="tab-content">
+					<textarea id="editor" cols="10" rows="10">
+						addi r1,r0,5
+						addi r2,r0,0
+						addi r7,r0,0
+
+						addi r2,r2,1
+						beq r2,r1,1
+						beq r0,r0,-3
+						addi r7,r0,0x7f
+
+						.halt
+					</textarea><br />
+					<input type="button" id="compile_asm" value="Pārtulkot"/>
+				</div>
+				
+				<div id="machinecode" class="tab-content">
+					<input type="button" id="compile_opcode" value="Compile"/>
+				</div>
+			</div>
+		</div> 
+ 
+		<div id="left" class="column"> 
+			changed values
+			break points
+			tools
+			
+			<h2>Reģistri</h2>
+			<table id="registers" class="hor-minimalist-b">
+			<thead>
+			<tr>
+					<th>Reģ.</th>
+					<th>Bin</th>
+					<th>Dec</th>
+					<th>Hex</th>
+			</tr>
+			</thead>
+			</table>
+			
+			<h2>Atmiņa</h2>
+			<div id="memory-box" class="hor-minimalist-a">
+				<table id="memory">
+				<thead>
+				<tr>
+					<th colspan="2">Adrese</th>
+					<th>Bin</th>
+					<th>Dec</th>
+					<th>Hex</th>
+				</tr>
+				</thead>
+				</table>
+			</div>
+		</div> 
+ 
+		<div id="right" class="column"> 
+		
+		</div> 
+ 
+	</div> 
+ 
+	<div id="footer-wrapper"> 
+		<div id="footer"></div> 
+	</div> 
+	
+	<script type="text/javascript">
+		var editor = CodeMirror.fromTextArea('editor', {
+			parserfile: "parsexml.js",
+			stylesheet: "js/codemirror/css/xmlcolors.css",
+			path: "js/codemirror/js/",
+			continuousScanning: 500,
+			lineNumbers: true
+		});
+	</script> 
+ 
+</body> 
+ 
+</html> 
