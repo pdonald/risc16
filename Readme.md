@@ -2,11 +2,11 @@
 
 Written in 2009 for the Computer Systems course.
 
-## C#
+## Csharp
 
 **Features**
 
-* Step by step
+* Step by step execution
 * Syntax highlighting
 * My own programming language (PSharp :D)
 * Interface language is Latvian
@@ -18,3 +18,7 @@ Written in 2009 for the Computer Systems course.
 Editor was never finished but it works somewhat.
 
 CPU emulation is complete.
+
+## License
+
+Apache 2.0
